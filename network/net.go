@@ -39,11 +39,11 @@ func GetSeeds(network byte) []Node {
 	var s1, s2 Node
 
 	if network == 0x00 { // Mainnet seeds
-		s1 = NewNode("127.0.0.1", 25519, 0x00)
-		s2 = NewNode("192.168.1.1", 25519, 0x00)
+		s1 = NewNode("192.168.1.201", 25519, 0x00)
+		s2 = NewNode("192.168.1.202", 25519, 0x00)
 	} else { // Testnets will need to be broken out here; for now a catch-all to a single testnet
-		s1 = NewNode("127.0.0.1", 25520, 0x01)
-		s2 = NewNode("192.168.1.1", 25520, 0x01)
+		s1 = NewNode("192.168.1.201", 25520, 0x01)
+		s2 = NewNode("192.168.1.202", 25520, 0x01)
 	}
 
 	// Add nodes to our slice
@@ -54,6 +54,7 @@ func GetSeeds(network byte) []Node {
 }
 
 func GetLocalAddresses() []net.IP {
+	// TODO: Update to determine local addresses automagically
 	var addrs []net.IP
 
 	return addrs

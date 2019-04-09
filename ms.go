@@ -3,26 +3,32 @@ package main
 import (
 	"fmt"
 
+	"github.com/tylerdmace/mumblestumble/config"
 	"github.com/tylerdmace/mumblestumble/network"
 	"github.com/tylerdmace/mumblestumble/version"
 )
 
 func main() {
-	fmt.Printf("Mumblestumble - Alpha (Build: %v - %v)\r\n", version.BuildVersion, version.BuildTimestamp)
+	var cfg config.Config
 
-	// Handle the loading of wallet data (creating if doesn't exist, seed words, file encryption & password, etc)
-	fmt.Printf("Loading wallet... ")
-	fmt.Printf("Done.\r\n")
+	printInfo()
 
-	// Handle the loading of chain state from disk or network seeds (for now, we will only load from network)
-	fmt.Printf("Syncing the chain... ")
+	// Load config file
+	cfg.LoadConfig()
 
-	seeds := network.GetSeeds(0x01) // Grab testnet seeds
+	fmt.Printf("Listening at %v:%v\r\n", cfg.LocalAddress, cfg.LocalPort)
+
+	// TODO: Wallet
+
+	// Bootstrap Network & Chain
+	seeds := network.GetSeeds((byte)(cfg.Network)) // TODO: Support DNS seed servers
 
 	for i := 0; i < len(seeds); i++ {
-		// Check connectivity with ping ops
+		// Check connectivity of seed nodes
 		network.SendOp(seeds[i], 0x02)
 	}
+}
 
-	fmt.Printf("Done.\r\n")
+func printInfo() {
+	fmt.Printf("Mumblestumble - Alpha (Build: %v - %v)\r\n", version.BuildVersion, version.BuildTimestamp)
 }
