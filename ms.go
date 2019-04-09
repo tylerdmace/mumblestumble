@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"os/signal"
 
 	"github.com/tylerdmace/mumblestumble/config"
 	"github.com/tylerdmace/mumblestumble/network"
@@ -11,24 +13,34 @@ import (
 func main() {
 	var cfg config.Config
 
+	// Clean shutdowns
+	go func() {
+		sigchan := make(chan os.Signal, 10)
+		signal.Notify(sigchan, os.Interrupt)
+		<-sigchan
+		shutdown()
+	}()
+
 	printInfo()
 
 	// Load config file
 	cfg.LoadConfig()
 
-	fmt.Printf("Listening at %v:%v\r\n", cfg.LocalAddress, cfg.LocalPort)
-
 	// TODO: Wallet
 
 	// Bootstrap Network & Chain
-	seeds := network.GetSeeds((byte)(cfg.Network)) // TODO: Support DNS seed servers
-
-	for i := 0; i < len(seeds); i++ {
-		// Check connectivity of seed nodes
-		network.SendOp(seeds[i], 0x02)
-	}
+	network.Bootstrap(cfg)
 }
 
 func printInfo() {
 	fmt.Printf("Mumblestumble - Alpha (Build: %v - %v)\r\n", version.BuildVersion, version.BuildTimestamp)
+}
+
+func shutdown() {
+	fmt.Printf("\r\nShutting down... ")
+
+	// Any shutdown work goes here
+
+	fmt.Printf("Done.\r\n")
+	os.Exit(0)
 }

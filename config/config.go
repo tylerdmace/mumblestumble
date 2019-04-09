@@ -20,12 +20,12 @@ type Config struct {
 func (c *Config) LoadConfig() *Config {
 	yml, err := ioutil.ReadFile(configFile)
 	if err != nil {
-		log.Fatalf("Could not load config file. Error: %v\r\n", err)
+		log.Fatal(err)
 	}
 
 	err = yaml.Unmarshal(yml, c)
 	if err != nil {
-		log.Fatalf("Could not load config file. Error: %v\r\n", err)
+		log.Fatal(err)
 	}
 
 	return c
