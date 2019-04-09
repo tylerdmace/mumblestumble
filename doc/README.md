@@ -1,10 +1,28 @@
-# Mumblestumble Documentation
+# Mumblestumble
+
+#### Table of Contents
+  - [Overview](#overview)
+  - [Transactions](#transactions)
+  - [Blocks](#blocks)
+  - [State](#state)
+  - [Networking](#networking)
+  - [Scriptless Scripts](#scriptless-scripts)
 
 ## Overview
-Because of the compact nature of confidentail transactions with cut-through, we're able to run every wallet as a full node without having to worry about the space and resource constraints we'd normally have to work around.
+<a id="#overview"></a>
+Mumblestumble is an experimental Mimblewimble implementation. It is not intended to be for anything other than educational purposes.
 
-To begin we will require both wallets to be online in order for a transaction to be crafted. We will look into something like SBBS in the future.
+## Transactions
+<a id="#transactions"></a>
 
-Our currency is going to be called ```Trips``` with it's smallest atomic units called ```Stumbles```.
+## Blocks
+<a id="#blocks"></a>
 
-## Table of Contents
+## State
+<a id="#state"></a>
+
+## Networking
+<a id="#networking"></a>
+
+## Scriptless Scripts
+<a id="#scripts"></a>
