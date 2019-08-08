@@ -1,5 +1,9 @@
 package block
 
+import (
+	"github.com/tylerdmace/mumblestumble/txn"
+)
+
 type Block struct {
 	Header BlockHeader
 }
@@ -11,6 +15,7 @@ type BlockHeader struct {
 	Timestamp     []byte
 	Bits          []byte
 	Nonce         []byte
+	Transactions  []txn.Txn
 }
 
 func GenerateGenesis() Block {

@@ -1,5 +1,5 @@
 # mumblestumble
-An experimental Mimblewimble implementation written in Golang. Technical documentation can be found [here](doc/README.md).
+An experimental Mimblewimble implementation written in Golang. Technical documentation can be found [here](doc/README.md). The implementation details have not been decided in full for some major mechanics including consensus, transaction interactivity protocol, script support, and more.
 
 ## Building
 

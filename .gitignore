@@ -14,3 +14,4 @@
 # Explicit
 config.yml
 bin/
+vendor/
